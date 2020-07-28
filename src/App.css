@@ -1,0 +1,68 @@
+@import '~antd/dist/antd.css';
+
+#root {
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+.App.loading {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.title {
+  color: white;
+}
+
+.header img {
+  height: 25px;
+  margin: auto 20px auto 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.cardView {
+  width: 100%;
+  padding: 0 50px;
+  margin: 10px 0;
+}
+
+.cardView.machine {
+  text-align: left;
+}
+
+.cardView img {
+  width: 225px;
+  height: 225px;
+}
+
+.card {
+  width: 100%;
+}
+
+.selectSearch {
+  margin: 10px 0 0;
+}
+
+.category {
+  color: rgb(255, 165, 0);
+  border: 1px solid rgb(255, 165, 0);
+  background-color: rgb(255, 251, 245);
+
+  padding: 0;
+}
+
+.category div {
+  padding: 0;
+}
