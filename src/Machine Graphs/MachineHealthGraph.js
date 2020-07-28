@@ -9,8 +9,6 @@ function MachineHealthGraph(props) {
     chart: {
       type: 'bar',
       height: 50,
-      width: 200,
-      inverted: true,
     },
     title: {
       enabled: false,
@@ -18,7 +16,6 @@ function MachineHealthGraph(props) {
     },
     tooltip: {
       formatter: function () {
-        console.log(this.series.name);
         if (this.series.name === 'Anti-Saúde') {
           return false;
         } else {
@@ -72,7 +69,7 @@ function MachineHealthGraph(props) {
         let point = this.point;
         window.setTimeout(function () {
           point.dataLabel.attr({
-            x: 80,
+            x: point.yBottom / 2 - 12.5,
           });
         });
         return this.series.data[0].y;

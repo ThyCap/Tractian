@@ -20,17 +20,22 @@ function MachineView(props) {
     return (
       <div className="cardView machine">
         <Card className="card">
-          <Row>
-            <Col span={8}>
+          <Row type="flex" className="machineRow">
+            <Col xs={24} sm={24} md={12} lg={8} xl={8} className="avatarCol">
               <Space direction="vertical">
-                <Avatar shape="square" size={225} icon={<PictureOutlined />} />
+                <Avatar
+                  shape="square"
+                  size={240}
+                  style={{ maxWidth: '80vw', maxHeight: '80vw' }}
+                  icon={<PictureOutlined />}
+                />
                 <Card className="category" size="small">
                   <TagOutlined />
                   {'  '}Categoria
                 </Card>
               </Space>
             </Col>
-            <Col span={8}>
+            <Col xs={24} sm={24} md={12} lg={8} xl={8}>
               <Space direction="vertical">
                 <Text strong>Nome do Ativo</Text>
                 <Text></Text>
@@ -42,8 +47,8 @@ function MachineView(props) {
                 <Text></Text>
               </Space>
             </Col>
-            <Col span={8}>
-              <Space direction="vertical">
+            <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+              <Space direction="vertical" style={{ width: '100%' }}>
                 <Text strong>
                   {' '}
                   <span style={{ color: 'red' }}>
@@ -77,10 +82,15 @@ function MachineView(props) {
     return (
       <div className="cardView machine">
         <Card className="card">
-          <Row type="flex">
-            <Col span={8}>
+          <Row type="flex" className="machineRow">
+            <Col xs={24} sm={24} md={12} lg={8} xl={8} className="avatarCol">
               <Space direction="vertical">
-                <Avatar shape="square" size={225} src={stats.model.image} />
+                <Avatar
+                  shape="square"
+                  size={240}
+                  style={{ maxWidth: '80vw', maxHeight: '80vw' }}
+                  src={stats.model.image}
+                />
                 <Card className="category" size="small">
                   <TagOutlined />
                   {'  '}
@@ -88,7 +98,7 @@ function MachineView(props) {
                 </Card>
               </Space>
             </Col>
-            <Col span={8}>
+            <Col xs={24} sm={24} md={12} lg={8} xl={8}>
               <Space direction="vertical">
                 <Text strong>Nome do Ativo</Text>
                 <Text>{stats.name}</Text>
@@ -100,8 +110,8 @@ function MachineView(props) {
                 <Text>{stats.description}</Text>
               </Space>
             </Col>
-            <Col span={8}>
-              <Space direction="vertical">
+            <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+              <Space direction="vertical" style={{ width: '100%' }}>
                 <Text strong>
                   {' '}
                   <span style={{ color: 'red' }}>

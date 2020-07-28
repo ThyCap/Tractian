@@ -8,7 +8,7 @@ import './App.css';
 
 import { LoadingOutlined } from '@ant-design/icons';
 
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 const { Text } = Typography;
 
@@ -155,6 +155,9 @@ class App extends React.Component {
                   unitStats={this.state.data.units[this.state.visibleKey - 1]}
                 />
               </Content>
+              <Footer style={{ textAlign: 'center' }}>
+                Ant Design ©2018 Developed by Thyago Capitanio
+              </Footer>
             </Layout>
           </Layout>
         </div>

@@ -13,7 +13,6 @@ function MachineInsightsGraph(props) {
     chart: {
       type: 'bar',
       height: 100,
-      width: 200,
     },
     title: {
       enabled: false,
@@ -42,6 +41,13 @@ function MachineInsightsGraph(props) {
         dataLabels: {
           enabled: true,
           inside: true,
+          formatter: function () {
+            if (this.series.data[0].y === 0) {
+              return '';
+            } else {
+              return this.series.data[0].y;
+            }
+          },
         },
       },
     },

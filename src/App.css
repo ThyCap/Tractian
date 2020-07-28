@@ -43,8 +43,8 @@
 }
 
 .cardView img {
-  width: 225px;
-  height: 225px;
+  width: minmax(25vw, 225px);
+  height: minmax(25vw, 225px);
 }
 
 .card {
@@ -65,4 +65,40 @@
 
 .category div {
   padding: 0;
+}
+
+.cardView.machine strong {
+  font-size: 1.2em;
+}
+
+@media screen and (max-width: 900px) {
+  .header img {
+    height: 12px;
+    width: 86px;
+  }
+
+  .cardView {
+    padding: 0 20px;
+  }
+
+  .header {
+    padding: 0 20px;
+  }
+
+  .machineRow > div {
+    margin: 10px 0;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .avatarCol {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .cardView,
+  .header {
+    padding: 0 5px;
+  }
 }

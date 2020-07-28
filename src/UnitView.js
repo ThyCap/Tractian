@@ -12,12 +12,12 @@ function UnitView(props) {
   return (
     <div className="cardView">
       <Card title={<Title level={4}>Overview da {unitStats.name}</Title>}>
-        <Row>
-          <Col span={12}>
+        <Row type="flex">
+          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
             <UnitPieGraph stats={unitStats.data} />
             <UnitStackedGraph stats={unitStats.data} />
           </Col>
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
             <UnitBarGraph assetsData={unitStats.data.assetsData} />
           </Col>
         </Row>
