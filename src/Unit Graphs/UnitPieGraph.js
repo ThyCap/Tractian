@@ -45,7 +45,7 @@ function UnitPieGraph(props) {
     ],
   };
 
-  options.series.data = Object.keys(names).map((key) => {
+  options.series[0].data = Object.keys(names).map((key) => {
     return { name: names[key], y: stats[key] };
   });
 
