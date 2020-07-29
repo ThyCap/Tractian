@@ -14,14 +14,22 @@ import MachineInsightsGraph from './Machine Graphs/MachineInsightsGraph.js';
 const { Text } = Typography;
 
 function MachineView(props) {
-  const { stats } = props;
+  const { stats, palette } = props;
 
   if (Object.keys(stats).length === 0) {
     return (
       <div className="cardView machine">
         <Card className="card">
           <Row type="flex" className="machineRow">
-            <Col xs={24} sm={24} md={12} lg={8} xl={8} className="avatarCol">
+            <Col
+              xs={24}
+              sm={24}
+              md={12}
+              lg={8}
+              xl={6}
+              xxl={4}
+              className="avatarCol"
+            >
               <Space direction="vertical">
                 <Avatar
                   shape="square"
@@ -30,12 +38,14 @@ function MachineView(props) {
                   icon={<PictureOutlined />}
                 />
                 <Card className="category" size="small">
-                  <TagOutlined />
-                  {'  '}Categoria
+                  <b>
+                    <TagOutlined />
+                    Categoria
+                  </b>
                 </Card>
               </Space>
             </Col>
-            <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+            <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={4}>
               <Space direction="vertical">
                 <Text strong>Nome do Ativo</Text>
                 <Text></Text>
@@ -47,13 +57,12 @@ function MachineView(props) {
                 <Text></Text>
               </Space>
             </Col>
-            <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+            <Col xs={24} sm={24} md={24} lg={8} xl={12} xxl={16}>
               <Space direction="vertical" style={{ width: '100%' }}>
                 <Text strong>
-                  {' '}
                   <span style={{ color: 'red' }}>
                     <HeartFilled />
-                  </span>{' '}
+                  </span>
                   Saúde
                 </Text>
                 <Text></Text>
@@ -65,10 +74,9 @@ function MachineView(props) {
                 </Text>
                 <Text></Text>
                 <Text strong>
-                  {' '}
                   <span style={{ color: 'gray' }}>
                     <ToolFilled />
-                  </span>{' '}
+                  </span>
                   Preventivas Realizadas
                 </Text>
                 <Text></Text>
@@ -83,7 +91,15 @@ function MachineView(props) {
       <div className="cardView machine">
         <Card className="card">
           <Row type="flex" className="machineRow">
-            <Col xs={24} sm={24} md={12} lg={8} xl={8} className="avatarCol">
+            <Col
+              xs={24}
+              sm={24}
+              md={12}
+              lg={8}
+              xl={6}
+              xxl={4}
+              className="avatarCol"
+            >
               <Space direction="vertical">
                 <Avatar
                   shape="square"
@@ -92,13 +108,14 @@ function MachineView(props) {
                   src={stats.model.image}
                 />
                 <Card className="category" size="small">
-                  <TagOutlined />
-                  {'  '}
-                  {stats.category.name}
+                  <b>
+                    <TagOutlined />
+                    {stats.category.name}
+                  </b>
                 </Card>
               </Space>
             </Col>
-            <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+            <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={4}>
               <Space direction="vertical">
                 <Text strong>Nome do Ativo</Text>
                 <Text>{stats.name}</Text>
@@ -110,28 +127,32 @@ function MachineView(props) {
                 <Text>{stats.description}</Text>
               </Space>
             </Col>
-            <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+            <Col xs={24} sm={24} md={24} lg={8} xl={12} xxl={16}>
               <Space direction="vertical" style={{ width: '100%' }}>
                 <Text strong>
-                  {' '}
                   <span style={{ color: 'red' }}>
                     <HeartFilled />
-                  </span>{' '}
+                  </span>
                   Saúde
                 </Text>
-                <MachineHealthGraph stats={stats.healthscore} />
+                <MachineHealthGraph
+                  stats={stats.healthscore}
+                  palette={[palette[0], palette[palette.length - 1]]}
+                />
                 <Text strong>
                   <span style={{ color: 'orange' }}>
                     <AlertFilled />
                   </span>
                   Insights
                 </Text>
-                <MachineInsightsGraph stats={stats.insights} />
+                <MachineInsightsGraph
+                  stats={stats.insights}
+                  palette={[palette[0], palette[palette.length - 1]]}
+                />
                 <Text strong>
-                  {' '}
                   <span style={{ color: 'gray' }}>
                     <ToolFilled />
-                  </span>{' '}
+                  </span>
                   Preventivas Realizadas
                   <span style={{ float: 'right' }}>
                     {stats.maintenances.length}

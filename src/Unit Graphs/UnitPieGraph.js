@@ -3,7 +3,7 @@ import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 
 function UnitPieGraph(props) {
-  const { stats } = props;
+  const { stats, palette } = props;
   const names = {
     inUse: 'Em Uso',
     available: 'Disponível',
@@ -29,6 +29,7 @@ function UnitPieGraph(props) {
       pie: {
         allowPointSelect: true,
         cursor: 'pointer',
+        colors: palette,
         dataLabels: {
           enabled: true,
           format: '<b>{point.name}</b>: {point.y}',
@@ -44,12 +45,9 @@ function UnitPieGraph(props) {
     ],
   };
 
-  for (let key in names) {
-    options.series[0].data.push({
-      name: names[key],
-      y: stats[key],
-    });
-  }
+  options.series.data = Object.keys(names).map((key) => {
+    return { name: names[key], y: stats[key] };
+  });
 
   return (
     <div>

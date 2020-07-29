@@ -3,7 +3,7 @@ import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 
 function MachineHealthGraph(props) {
-  const { stats } = props;
+  const { stats, palette } = props;
 
   const options = {
     chart: {
@@ -42,6 +42,7 @@ function MachineHealthGraph(props) {
       series: {
         stacking: 'normal',
         pointWidth: 20,
+        colors: palette,
         dataLabels: {
           enabled: true,
           inside: true,
@@ -54,7 +55,7 @@ function MachineHealthGraph(props) {
   options.series.push({
     name: 'Anti-Saúde',
     data: [100 - stats.health],
-    color: '#434348',
+    color: palette[0],
     dataLabels: {
       enabled: false,
     },
@@ -63,7 +64,7 @@ function MachineHealthGraph(props) {
   options.series.push({
     name: 'Saúde',
     data: [stats.health],
-    color: '#7cb5ec',
+    color: palette[1],
     dataLabels: {
       formatter: function () {
         let point = this.point;

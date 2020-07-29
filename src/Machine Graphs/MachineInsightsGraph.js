@@ -3,10 +3,10 @@ import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 
 function MachineInsightsGraph(props) {
-  const { stats } = props;
+  const { stats, palette } = props;
   const names = {
-    checked: 'Verificados',
     pending: 'Não Verificados',
+    checked: 'Verificados',
   };
 
   const options = {
@@ -32,7 +32,7 @@ function MachineInsightsGraph(props) {
       },
     },
     legend: {
-      inverted: true,
+      reversed: true,
     },
     plotOptions: {
       series: {
@@ -54,10 +54,13 @@ function MachineInsightsGraph(props) {
     series: [],
   };
 
-  for (let key in names) {
-    options.series.push({ name: names[key], data: [stats[key]] });
+  options.series = Object.keys(names).map((key) => {
+    const i = Object.keys(names).indexOf(key);
+
     options.yAxis.max += stats[key];
-  }
+
+    return { name: names[key], data: [stats[key]], color: palette[i] };
+  });
 
   return (
     <div>

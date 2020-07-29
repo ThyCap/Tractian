@@ -1,5 +1,9 @@
 @import '~antd/dist/antd.css';
 
+* {
+  outline: none;
+}
+
 #root {
   height: 100%;
 }
@@ -33,7 +37,6 @@
 }
 
 .cardView {
-  width: 100%;
   padding: 0 50px;
   margin: 10px 0;
 }
@@ -42,28 +45,11 @@
   text-align: left;
 }
 
-.cardView img {
-  width: minmax(25vw, 225px);
-  height: minmax(25vw, 225px);
-}
-
-.card {
-  width: 100%;
-}
-
-.selectSearch {
-  margin: 10px 0 0;
-}
-
 .category {
   color: rgb(255, 165, 0);
   border: 1px solid rgb(255, 165, 0);
   background-color: rgb(255, 251, 245);
 
-  padding: 0;
-}
-
-.category div {
   padding: 0;
 }
 
@@ -77,10 +63,7 @@
     width: 86px;
   }
 
-  .cardView {
-    padding: 0 20px;
-  }
-
+  .cardView,
   .header {
     padding: 0 20px;
   }

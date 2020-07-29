@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Highcharts from 'highcharts/highstock';
 import { Layout, Menu, Select, Typography } from 'antd';
 
 import MachineView from './MachineView.js';
@@ -24,14 +25,27 @@ class App extends React.Component {
   async componentDidMount() {
     const staticUrl =
       'https://tractian-data.s3.us-east-2.amazonaws.com/api.json';
+    const base = '#7cb5ec';
 
+    // Criar Paleta de cores para os gráficos
+    const pieColors = [0, 1, 2, 3].map((num) => {
+      return Highcharts.color(base)
+        .brighten((num - 3) / 6)
+        .get();
+    });
+
+    console.log(pieColors);
+
+    // pegar as informações da fake API e ajustar o state
     await axios.get(staticUrl).then((res) =>
-      this.setState({ ...this.state, data: res.data, loaded: true }, () => {
-        this.selectOptions();
-      })
+      this.setState(
+        { ...this.state, data: res.data, loaded: true, palette: pieColors },
+        () => {
+          this.selectOptions();
+          console.log(this.state);
+        }
+      )
     );
-
-    this.selectOptions();
   }
 
   clickUnidade = (e) => {
@@ -57,32 +71,29 @@ class App extends React.Component {
       return asset.name;
     });
 
-    this.setState(
-      (prevState) => ({
-        ...prevState,
-        options: assetNames,
-      }),
-      () => {}
-    );
+    this.setState({
+      ...this.state,
+      options: assetNames,
+    });
   };
 
   printOptions = () => {
-    return this.state.options.map((option) => {
-      return (
-        <Option value={option} key={this.state.options.indexOf(option)}>
-          {option}
-        </Option>
-      );
-    });
+    const options = this.state.options;
+
+    return options.map((option) => (
+      <Option value={option} key={options.indexOf(option)}>
+        {option}
+      </Option>
+    ));
   };
 
   onChange = (value) => {
     const units = this.state.data.units;
     const key = this.state.visibleKey;
 
-    const [stats] = units[key - 1].data.assetsData.filter((asset) => {
-      return asset.name === value;
-    });
+    const [stats] = units[key - 1].data.assetsData.filter(
+      (asset) => asset.name === value
+    );
 
     this.setState({
       ...this.state,
@@ -133,7 +144,7 @@ class App extends React.Component {
                         ? 'Escolha um ativo'
                         : this.state.selectedMachine
                     }
-                    style={{ width: 300 }}
+                    style={{ width: 300, marginTop: 10 }}
                     placeholder="Escolha um ativo"
                     optionFilterProp="children"
                     onChange={this.onChange}
@@ -148,11 +159,15 @@ class App extends React.Component {
                 </form>
               </Content>
               <Content>
-                <MachineView stats={this.state.selectedMachineStats} />
+                <MachineView
+                  stats={this.state.selectedMachineStats}
+                  palette={this.state.palette}
+                />
               </Content>
               <Content>
                 <UnitView
                   unitStats={this.state.data.units[this.state.visibleKey - 1]}
+                  palette={this.state.palette}
                 />
               </Content>
               <Footer style={{ textAlign: 'center' }}>
