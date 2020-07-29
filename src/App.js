@@ -23,8 +23,10 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
+    // Link da Fake API
     const staticUrl =
       'https://tractian-data.s3.us-east-2.amazonaws.com/api.json';
+    // Cor inicial do Highcharts
     const base = '#7cb5ec';
 
     // Criar Paleta de cores para os gráficos
@@ -34,15 +36,12 @@ class App extends React.Component {
         .get();
     });
 
-    console.log(pieColors);
-
     // pegar as informações da fake API e ajustar o state
     await axios.get(staticUrl).then((res) =>
       this.setState(
         { ...this.state, data: res.data, loaded: true, palette: pieColors },
         () => {
           this.selectOptions();
-          console.log(this.state);
         }
       )
     );
@@ -61,6 +60,16 @@ class App extends React.Component {
         this.printOptions();
       }
     );
+  };
+
+  printUnits = () => {
+    const units = this.state.data.units;
+
+    return units.map((unit) => (
+      <Menu.Item key={units.indexOf(unit) + 1} onClick={this.clickUnidade}>
+        {unit.name}
+      </Menu.Item>
+    ));
   };
 
   selectOptions = () => {
@@ -102,17 +111,11 @@ class App extends React.Component {
     });
   };
 
-  onBlur() {
-    console.log('blur');
-  }
+  onBlur() {}
 
-  onFocus() {
-    console.log('focus');
-  }
+  onFocus() {}
 
-  onSearch(val) {
-    console.log('search:', val);
-  }
+  onSearch(val) {}
 
   render() {
     if (this.state.loaded) {
@@ -125,12 +128,7 @@ class App extends React.Component {
                 alt="Tractian Logo"
               ></img>
               <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-                <Menu.Item key="1" onClick={this.clickUnidade}>
-                  Unidade 1
-                </Menu.Item>
-                <Menu.Item key="2" onClick={this.clickUnidade}>
-                  Unidade 2
-                </Menu.Item>
+                {this.printUnits()}
               </Menu>
             </Header>
             <Layout>
